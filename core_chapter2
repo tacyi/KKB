@@ -1,0 +1,82 @@
+这课程是名校研究生水平，要认真反复思考学习
+第二节课具体内容
+1 什么是优化问题 optimization problem
+2 动态规划 dynamic programming   coding
+3 梯度下降 gradient descent   coding
+4 什么是机器学习 machine learning
+5 特征、模型和预测 feature model predicate
+6 什么是向量距离 vector distance   coding 
+
+对同学建议的回应
+参考资料和书籍 明权docter 的github
+阶段性项目练习 从第二节课开始实战练习逐渐增多
+希望多讲面试和工程实战相关的问题 尽量每节课一个相关企业实战案例分析
+
+Programming 02-01
+Rod cutting problem
+动态规划的核心思想——不断写表查表
+大佬 beelman发现 一类问题——overlapping subproblems  
+
+动态规划的局限性
+1 限制条件极其多(上万个)
+2 问题分解极其复杂(难以识别子问题)
+3 子问题拆解极多(时间复杂度太高)
+怎么办?
+
+Machine learning
+1980时期  科学家往往把问题抽象成图和树的问题，从而有很多子问题，子树，子图，用动态规划加速解决这类问题。
+出现了邮件问题——哈佛大学教授 用数据统计来确定邮件是否是垃圾邮件(概率)，然后形成一种模型去预测邮件是否是垃圾邮件。这类解决流程也成为了机器学习。
+
+万物若可量化便可分析
+用向量去量化物体
+f(向量)
+f(数据)-> 返回值
+-> 连续数字∈R   f是回归函数 regression method
+->±1／0、1 二分类 binary classification
+-> 0.2 0.7 0.1 multiclass classification
+-> action1，action2...actionn   sequence learning()
+->(输入了1，2，3，4四个人的信息)输出是3，2，4，1 给这四人排了个序   rank(推荐系统，搜索引擎用得特别多)
+
+分类函数和回归函数是机器学习中最典型的两个函数
+回归是生物学概念，子女的身高，回归现象。
+回归本质是拟合整体样本的群体趋势
+各种各样的机器学习方法，有一种是基于较深的神经网络来进行（deep n network learning）
+深度学习是机器学习的一种方法。
+
+邮件rank场景 输入很多邮件 输出按照紧急程度排列
+邮件regression场景 新的邮件预计多长时间会去回复
+邮件multiclass  邮件的类别，如是工作相关邮件的概率，是垃圾邮件的概率，是私人朋友邮件的概率
+
+机器学习是反反复复做这样的事
+让机器半自动的得到f，以前是人手动写好f，现在是让机器半自动得到f。X是对事物的量化。
+f的返回值有标准答案叫做监督学习 supervised learning 标准答案是引导学习方向，预测值错了便换个方向去学习
+f自动提取X的特征将事物归类叫做非监督学习unsupervised learning 也叫做聚类(cluster)
+
+framework 机器学习的通用框架
+Observed data -> 特征提取feature extractor -> 向量vector->学习->  f(得到y)  <-x<-特征提取<-new data
+
+在监督学习求解f中非常重要的方法叫做梯度下降
+梯度下降的用途是(f(k，b，x)＝y 求一组k，b，使输入任意一组x都尽可能接近y）loss＝∑[(kx＋b）-y]² 求使loss最小的k，b， 随机k，loss对k求偏导值kp＞0 k增大，loss增大，kp＜0，k增大，loss减小。newk＝oldk ＋ (-1)kp×0.001    newb＝oldb＋ (-1)kb×α 这样就慢慢找到一组最优的k，b
+快速演示梯度下降意义
+import random
+import 
+def loss(k):
+    return 3×(k²)＋7k-10
+def partial(k):
+    return 6k＋7
+k ＝random.random()
+k＝random.randint(-10，10)
+alpha ＝1e-3＃0.001
+for i in range(10):
+    k ＝k＋(-1)×partial(k)×alpha
+    print(k，loss(k)）
+居然可以知道-b／2a 为什么还要梯度下降？因为往往问题函数很复杂没办法直接知道最低点自变量表达式
+
+cluster problem
+淘宝国际违禁品暗语
+选取部分淘宝商品描述-＞将文本向量化(最简单的方式是tf-idf)-＞将文本进行聚类-＞按照已知暗语定位商品类别-＞获得该商品类别中词汇频率远高于正常词汇分布的单词
+
+programming 0203
+省会能源中心设置，基于k-means
+1 random generate k kernel
+2 一直重复找kernel，直到新kernel和上次kernel很接近便可以停止
