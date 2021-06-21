@@ -80,3 +80,9 @@ programming 0203
 省会能源中心设置，基于k-means
 1 random generate k kernel
 2 一直重复找kernel，直到新kernel和上次kernel很接近便可以停止
+
+k-means缺点
+1 受初始化节点影响很大(尤其是样本分布很细长)
+2 计算时间复杂度很大
+
+作业 复现课堂代码(动态规划，省会能源中心)
